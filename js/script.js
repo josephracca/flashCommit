@@ -57,35 +57,35 @@ function initialize() {
 //event listeners for each stack
 //this will push the correct sheet from the spreadsheet to the url
 csStack.addEventListener("click", function () {
-  mainCard.innerHTML = "<h1>C#</h1>";
+  mainCard.innerHTML = "<h1>C#</h1>(click to start)";
   stackSelected = sheet1;
   disableArrows();
   initialize();
 });
 
 htmlStack.addEventListener("click", function () {
-  mainCard.innerHTML = "<h1>html</h1>";
+  mainCard.innerHTML = "<h1>html</h1>(click to start)";
   stackSelected = sheet2;
   disableArrows();
   initialize();
 });
 
 cssStack.addEventListener("click", function () {
-  mainCard.innerHTML = "<h1>css</h1>";
+  mainCard.innerHTML = "<h1>css</h1>(click to start)";
   stackSelected = sheet3;
   disableArrows();
   initialize();
 });
 
 javascriptStack.addEventListener("click", function () {
-  mainCard.innerHTML = "<h1>javascript</h1>";
+  mainCard.innerHTML = "<h1>javascript</h1>(click to start)";
   stackSelected = sheet4;
   disableArrows();
   initialize();
 });
 
 bootstrapStack.addEventListener("click", function () {
-  mainCard.innerHTML = "<h1>bootstrap</h1>";
+  mainCard.innerHTML = "<h1>bootstrap</h1>(click to start)";
   stackSelected = sheet5;
   disableArrows();
   initialize();
@@ -112,7 +112,7 @@ function loadQuestions(url) {
       for (let i = 0; i < questions.length; i++) {
         // console.log(questions[i].gsx$definition.$t);
         // displayText.innerHTML=questions[i].gsx$definition.$t;
-        mainCard.innerText = questions[i].gsx$term.$t;
+        mainCard.innerHTML = '<p>' + questions[questionCounter].gsx$term.$t + '</p>';
         // prevBtn.innerText=questions[i].gsx$choice2.$t;
         // flipBtn.innerText=questions[i].gsx$choice3.$t;
         // nextBtn.innerText=questions[i].gsx$choice4.$t;
@@ -141,6 +141,8 @@ flipBtn.addEventListener("click", function () {
 });
 
 mainCard.addEventListener("click", function () {
+  console.log(storedQuestions);
+
   enableArrows();
 
   if (!stackStarted) {
@@ -156,12 +158,13 @@ mainCard.addEventListener("click", function () {
 
 function flipCard() {
   // console.log(termFirst);
+  console.log(questionCounter);
 
   if (termFirst) {
-    mainCard.innerText = storedQuestions[questionCounter].gsx$definition.$t;
+    mainCard.innerHTML = '<def>' + storedQuestions[questionCounter].gsx$definition.$t + '</def>';
     termFirst = false;
   } else {
-    mainCard.innerText = storedQuestions[questionCounter].gsx$term.$t;
+    mainCard.innerHTML = '<p>' + storedQuestions[questionCounter].gsx$term.$t + '</p>';
     termFirst = true;
   }
 }
@@ -176,18 +179,18 @@ prevBtn.addEventListener("click", function () {
     questionCounter = storedQuestions.length - 1;
   }
 
-  mainCard.innerText = storedQuestions[questionCounter].gsx$term.$t;
+  mainCard.innerHTML = '<p>' + storedQuestions[questionCounter].gsx$term.$t + '</p>';
   // console.log(questionCounter);
 });
 
-// console.log(questionCounter);
+
 
 //event listener for next button
 //for loop that goes through each index
 //must reset to first [0] once it hits the last one
 nextBtn.addEventListener("click", function () {
   termFirst = true;
-  // console.log(questionCounter);
+  console.log(questionCounter);
 
   if (questionCounter < storedQuestions.length - 1) {
     questionCounter++;
@@ -195,7 +198,7 @@ nextBtn.addEventListener("click", function () {
     questionCounter = 0;
   }
 
-  mainCard.innerText = storedQuestions[questionCounter].gsx$term.$t;
+  mainCard.innerHTML = '<p>' + storedQuestions[questionCounter].gsx$term.$t + '</p>';
   // console.log(questionCounter);
   // console.log(termFirst);
 });

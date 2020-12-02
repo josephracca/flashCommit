@@ -1,6 +1,23 @@
-/* body{
-    background-color: black;
-} */
+body{
+    font-family: 'Overpass', sans-serif;
+    background-color: #272727;
+    color: white;
+
+}
+
+h1{
+    font-size: 100px;
+    line-height: 90px;
+}
+
+p{
+    font-size: 50px;
+}
+
+def{
+    font-size: 30px;
+    text-align: left;
+}
 
 #mainCard{
 width: 100%;

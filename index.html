@@ -18,6 +18,10 @@
 
   <link rel="stylesheet" href="./css/style.css">
   <link rel="shortcut icon" href="./images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+    rel="stylesheet">
 
   <title>
     flash.commit by joseph racca
@@ -36,52 +40,60 @@
 
   <!-- NAV BAR -->
 
-  <div class="container-fluid">
-    <h1 class="text-center">flash.commit</h1>
+  <div class="container-fluid pt-3">
+    <h2 class="text-center">flash.commit</h2>
   </div>
 
 
   <!-- INNER -->
-  <div class="container-fluid">
+  <div class="container-fluid px-5 pt-5">
     <div class="row">
-      <div class="col-4">
+
+
+      <!-- STACK LIBRARY -->
+      <div class="col-4 pr-5">
         <h2>CARD STACKS</h2>
         <div class="row">
-          
-        <button id="csStack" type="button" class="col-6 p-5 mb-3 btn btn-dark justify-content-center">
-          C#
-        </button>
-        <button id="htmlStack" type="button" class="col-6 p-5 mb-3 btn btn-dark justify-content-center">
-          html
-        </button>
-        <button id="cssStack" type="button" class="col-6 p-5 mb-3 btn btn-dark justify-content-center">
-          css
-        </button>
-        <button id="javascriptStack" type="button" class="col-6 p-5 mb-3 btn btn-dark justify-content-center">
-          javascript
-        </button>
-        <button id="bootstrapStack" type="button" class="col-6 p-5 mb-3 btn btn-dark justify-content-center">
-          bootstrap
-        </button>
+
+          <button id="csStack" type="button" class="col-6 p-5 mb-3 btn btn-dark justify-content-center">
+            <h3>C#</h3>
+          </button>
+          <button id="htmlStack" type="button" class="col-6 p-5 mb-3 btn btn-dark justify-content-center">
+           <h3>html</h3>
+          </button>
+          <button id="cssStack" type="button" class="col-6 p-5 mb-3 btn btn-dark justify-content-center">
+            <h3>css</h3>
+          </button>
+          <button id="javascriptStack" type="button" class="col-6 p-5 mb-3 btn btn-dark justify-content-center">
+            <h3>javascript</h3>
+          </button>
+          <button id="bootstrapStack" type="button" class="col-6 p-5 mb-3 btn btn-dark justify-content-center">
+            <h3>bootstrap</h3>
+          </button>
         </div>
       </div>
-      <div class="col-8">    <div class="row d-flex justify-content-center">
-        <button id="mainCard" type="button" class="btn btn-dark justify-content-center m-2">
-          <h1>CHOOSE<br>A STACK <br>TO STUDY<br><---------</h1>
-        </button>
-        
+
+      <!-- FLASH CARD -->
+      <div class="col-8">
+        <div class="row d-flex justify-content-center">
+          <button id="mainCard" type="button" class="btn btn-dark justify-content-center m-2">
+            <h1>CHOOSE<br>A STACK <br>TO STUDY<br>
+              <--------- </h1>
+          </button>
+
+        </div>
+        <!-- CARD CONTROLS -->
+        <div class="row d-flex justify-content-center">
+          <button id="prevBtn" type="button" class="btn btn-dark justify-content-center m-2">
+            < </button>
+              <button id="flipBtn" type="button" class="btn btn-dark justify-content-center m-2">
+                [ SELECT STACK ]
+              </button>
+              <button id="nextBtn" type="button" class="btn btn-dark m-2">
+                >
+              </button>
+        </div>
       </div>
-      <div class="row d-flex justify-content-center">
-        <button id="prevBtn" type="button" class="btn btn-dark justify-content-center m-2">
-          <
-        </button>
-        <button id="flipBtn" type="button" class="btn btn-dark justify-content-center m-2">
-          [ SELECT STACK ]
-        </button>
-        <button id="nextBtn" type="button" class="btn btn-dark m-2">
-          >
-        </button>
-      </div></div>
     </div>
   </div>
 
