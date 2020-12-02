@@ -30,15 +30,27 @@ let stackStarted = false;
 document.getElementById("nextBtn").disabled = true;
 document.getElementById("prevBtn").disabled = true;
 document.getElementById("flipBtn").disabled = true;
+document.getElementById("mainCard").disabled = true;
 
-function enableBtn() {
-	document.getElementById("nextBtn").disabled = false;
+
+function enableBtns() {
+
+  document.getElementById("flipBtn").disabled = false;
+  document.getElementById("mainCard").disabled = false;
+}
+
+function enableArrows(){
+  document.getElementById("nextBtn").disabled = false;
 	document.getElementById("prevBtn").disabled = false;
-	document.getElementById("flipBtn").disabled = false;
+}
+
+function disableArrows(){
+  document.getElementById("nextBtn").disabled = true;
+	document.getElementById("prevBtn").disabled = true;
 }
 
 function initialize() {
-	enableBtn();
+	enableBtns();
 	stackStarted = false;
   flipBtn.innerText = "click to start";
 }
@@ -47,12 +59,14 @@ function initialize() {
 csStack.addEventListener("click", function () {
   mainCard.innerHTML = "<h1>C#</h1>";
   stackSelected = sheet1;
+  disableArrows();
   initialize();
 });
 
 htmlStack.addEventListener("click", function () {
   mainCard.innerHTML = "<h1>html</h1>";
   stackSelected = sheet2;
+  disableArrows();
   initialize();
 
   //   loadQuestions(url_pt1 + apikey + sheet2 + url_pt2);
@@ -61,6 +75,7 @@ htmlStack.addEventListener("click", function () {
 cssStack.addEventListener("click", function () {
   mainCard.innerHTML = "<h1>css</h1>";
   stackSelected = sheet3;
+  disableArrows();
   initialize();
 
   //   loadQuestions(url_pt1 + apikey + sheet3 + url_pt2);
@@ -69,6 +84,7 @@ cssStack.addEventListener("click", function () {
 javascriptStack.addEventListener("click", function () {
   mainCard.innerHTML = "<h1>javascript</h1>";
   stackSelected = sheet4;
+  disableArrows();
   initialize();
 
   //   loadQuestions(url_pt1 + apikey + sheet4 + url_pt2);
@@ -77,6 +93,7 @@ javascriptStack.addEventListener("click", function () {
 bootstrapStack.addEventListener("click", function () {
   mainCard.innerHTML = "<h1>bootstrap</h1>";
   stackSelected = sheet5;
+  disableArrows();
   initialize();
 
   //   loadQuestions(url_pt1 + apikey + sheet5 + url_pt2);
@@ -129,12 +146,15 @@ flipBtn.addEventListener("click", function () {
     loadQuestions(url_pt1 + apikey + stackSelected + url_pt2);
     stackStarted = true;
     flipBtn.innerText = "FLIP";
+    enableArrows();
   } else {
     flipCard();
   }
 });
 
 mainCard.addEventListener("click", function () {
+  enableArrows();
+
   if (!stackStarted) {
     loadQuestions(url_pt1 + apikey + stackSelected + url_pt2);
     stackStarted = true;
