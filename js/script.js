@@ -1,5 +1,3 @@
-// alert('Good!');
-
 let inputText = document.getElementById("inputText");
 
 let displayText = document.getElementById("displayText");
@@ -27,35 +25,37 @@ let bootstrapStack = document.getElementById("bootstrapStack");
 
 let stackStarted = false;
 
+let storedQuestions = [];
+let questionCounter = 0;
+
 document.getElementById("nextBtn").disabled = true;
 document.getElementById("prevBtn").disabled = true;
 document.getElementById("flipBtn").disabled = true;
 document.getElementById("mainCard").disabled = true;
 
-
 function enableBtns() {
-
   document.getElementById("flipBtn").disabled = false;
   document.getElementById("mainCard").disabled = false;
 }
 
-function enableArrows(){
+function enableArrows() {
   document.getElementById("nextBtn").disabled = false;
-	document.getElementById("prevBtn").disabled = false;
+  document.getElementById("prevBtn").disabled = false;
 }
 
-function disableArrows(){
+function disableArrows() {
   document.getElementById("nextBtn").disabled = true;
-	document.getElementById("prevBtn").disabled = true;
+  document.getElementById("prevBtn").disabled = true;
 }
 
 function initialize() {
-	enableBtns();
-	stackStarted = false;
+  enableBtns();
+  stackStarted = false;
   flipBtn.innerText = "click to start";
 }
 
 //event listeners for each stack
+//this will push the correct sheet from the spreadsheet to the url
 csStack.addEventListener("click", function () {
   mainCard.innerHTML = "<h1>C#</h1>";
   stackSelected = sheet1;
@@ -68,8 +68,6 @@ htmlStack.addEventListener("click", function () {
   stackSelected = sheet2;
   disableArrows();
   initialize();
-
-  //   loadQuestions(url_pt1 + apikey + sheet2 + url_pt2);
 });
 
 cssStack.addEventListener("click", function () {
@@ -77,8 +75,6 @@ cssStack.addEventListener("click", function () {
   stackSelected = sheet3;
   disableArrows();
   initialize();
-
-  //   loadQuestions(url_pt1 + apikey + sheet3 + url_pt2);
 });
 
 javascriptStack.addEventListener("click", function () {
@@ -86,8 +82,6 @@ javascriptStack.addEventListener("click", function () {
   stackSelected = sheet4;
   disableArrows();
   initialize();
-
-  //   loadQuestions(url_pt1 + apikey + sheet4 + url_pt2);
 });
 
 bootstrapStack.addEventListener("click", function () {
@@ -95,16 +89,9 @@ bootstrapStack.addEventListener("click", function () {
   stackSelected = sheet5;
   disableArrows();
   initialize();
-
-  //   loadQuestions(url_pt1 + apikey + sheet5 + url_pt2);
 });
 
 //change the number above to coincide with the sheet
-
-let storedQuestions = [];
-let questionCounter = 0;
-
-//for reference: https://docs.google.com/spreadsheets/d/e/2PACX-1vRMgNqCB-AH4-sHFqH3MX_0gwE6BscoBPm1IODYNI3OCInq0Ftwc6Io8stq-_bZL6Pi-n_ZKc4R4jdu/pubhtml
 
 //pull from google sheet URL
 function loadQuestions(url) {
@@ -112,16 +99,16 @@ function loadQuestions(url) {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       // Typical action to be performed when the document is ready:
-      console.log(JSON.parse(this.responseText));
+      // console.log(JSON.parse(this.responseText));
 
       //start by making it a variable
       let questions = JSON.parse(this.responseText).feed.entry;
-      console.log(questions);
-
+      // console.log(questions);
+      // make the array accessible outside of this function
       storedQuestions = questions;
-      console.log(storedQuestions);
+      // console.log(storedQuestions);
 
-      //go through the array witha  for loop
+      //go through the array with a for loop
       for (let i = 0; i < questions.length; i++) {
         // console.log(questions[i].gsx$definition.$t);
         // displayText.innerHTML=questions[i].gsx$definition.$t;
@@ -141,6 +128,7 @@ let termFirst = true;
 //event listener for flip button
 //replace inner text with the opposite ijnformation
 //maybe create a bool or value that sets it to 0 or 1?
+
 flipBtn.addEventListener("click", function () {
   if (!stackStarted) {
     loadQuestions(url_pt1 + apikey + stackSelected + url_pt2);
@@ -164,10 +152,10 @@ mainCard.addEventListener("click", function () {
   }
 });
 
-console.log(termFirst);
+// console.log(termFirst);
 
 function flipCard() {
-  console.log(termFirst);
+  // console.log(termFirst);
 
   if (termFirst) {
     mainCard.innerText = storedQuestions[questionCounter].gsx$definition.$t;
@@ -189,10 +177,10 @@ prevBtn.addEventListener("click", function () {
   }
 
   mainCard.innerText = storedQuestions[questionCounter].gsx$term.$t;
-  console.log(questionCounter);
+  // console.log(questionCounter);
 });
 
-console.log(questionCounter);
+// console.log(questionCounter);
 
 //event listener for next button
 //for loop that goes through each index
@@ -208,9 +196,6 @@ nextBtn.addEventListener("click", function () {
   }
 
   mainCard.innerText = storedQuestions[questionCounter].gsx$term.$t;
-  console.log(questionCounter);
-  console.log(termFirst);
+  // console.log(questionCounter);
+  // console.log(termFirst);
 });
-
-//event listener for stacks button
-//this will pull the correct sheet from the spreadsheet
