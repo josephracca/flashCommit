@@ -41,7 +41,7 @@
   <!-- NAV BAR -->
 
   <div class="container-fluid pt-3 navbar justify-content-center">
-    <h2 class="text-center"><i class="fas fa-poo-storm"></i> flash.commit</u></h2>
+    <h2 class="text-center greenText"><img src="./images/logo.svg"> flash.commit</u></h2>
   </div>
 
 
@@ -52,33 +52,43 @@
 
       <!-- STACK LIBRARY -->
       <div class="col-4 px-5 sidebar pt-5">
-        <h2 class="pb-4"><i class="fas fa-book"></i> CARD STACKS</h2>
+        <h2 class="pb-4"><img src="./images/stacks.svg"></i> CARD STACKS</h2>
         <div class="row">
 
-            <button id="csStack" type="button"
-              class="col-12 py-3 col-xl-6 py-xl-5 mb-3 btn btn-dark justify-content-center">
+          <div class="col-12 col-xl-6 pb-3">  
+          <button id="csStack" type="button"
+              class="d-flex w-100 py-3 py-xl-5 mb-3 btn btn-light justify-content-center">
               <h3>C#</h3>
             </button>
+        </div>
 
+            <div class="col-12 col-xl-6 pb-3">
             <button id="htmlStack" type="button"
-              class="col-12 py-3 col-xl-6 py-xl-5 mb-3 btn btn-dark justify-content-center">
+              class="d-flex w-100 py-3 py-xl-5 mb-3 btn btn-light justify-content-center">
               <h3>html</h3>
             </button>
+        </div>
 
+            <div class="col-12 col-xl-6 pb-3">
             <button id="cssStack" type="button"
-              class="col-12 py-3 col-xl-6 py-xl-5 mb-3 btn btn-dark justify-content-center">
+              class="d-flex w-100 py-3 py-xl-5 mb-3 btn btn-light justify-content-center">
               <h3>css</h3>
             </button>
+        </div>
 
+            <div class="col-12 col-xl-6 pb-3">
             <button id="javascriptStack" type="button"
-              class="col-12 py-3 col-xl-6 py-xl-5 mb-3 btn btn-dark justify-content-center">
+              class="d-flex w-100 py-3 py-xl-5 mb-3 btn btn-light justify-content-center">
               <h3>javascript</h3>
             </button>
+        </div>
 
+            <div class="col-12 col-xl-6 pb-3">
             <button id="bootstrapStack" type="button"
-              class="col-12 py-3 col-xl-6 py-xl-5 mb-3 btn btn-dark justify-content-center">
+              class="d-flex w-100 py-3 py-xl-5 mb-3 btn btn-light justify-content-center">
               <h3>bootstrap</h3>
             </button>
+        </div>
 
         </div>
       </div>
@@ -93,16 +103,21 @@
 
         </div>
         <!-- CARD CONTROLS -->
-        <div class="row d-flex justify-content-center">
-          <div id="prevBtn" type="button" class="m-2">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div id="prevBtn" type="button" class="m-2 pt-2">
             <h2><i class="fas fa-chevron-circle-left"></i></h2>
           </div>
           <button id="flipBtn" type="button" class="px-5 btn btn-dark justify-content-center m-2">
             [ SELECT STACK ]
           </button>
-          <div id="nextBtn" type="button" class="m-2">
+          <div id="nextBtn" type="button" class="m-2 pt-2">
             <h2><i class="fas fa-chevron-circle-right"></i></h2>
           </div>
+        </div>
+
+        <!-- card number -->
+        <div id="position" class="row d-flex justify-content-center">
+          
         </div>
       </div>
     </div>

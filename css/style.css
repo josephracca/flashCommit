@@ -19,10 +19,10 @@ html, body{
 h1{
     font-size: 100px;
     line-height: 90px;
+    letter-spacing: -5px;
 }
 
 h2{
-    color:#AFD951;
     font-size: 28px;
 }
 
@@ -30,8 +30,23 @@ h3{
     font-size: 28px;
 }
 
+.greenText{
+    color:#AFD951;
+
+}
+
 .green{
     background-color:#AFD951;
+    color: black;
+}
+
+.pink{
+    background-color:#E66DCB;
+    color: black;
+}
+
+.blue{
+    background-color:#2FE0EF;
     color: black;
 }
 
@@ -64,3 +79,5 @@ width: 90%;
 max-width: 800px;
 height: 500px;
 }
+
+

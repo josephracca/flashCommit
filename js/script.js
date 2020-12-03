@@ -1,6 +1,9 @@
+let colors = ["green", "pink", "blue"];
+
 let inputText = document.getElementById("inputText");
 
 let displayText = document.getElementById("displayText");
+let position = document.getElementById("position");
 
 let mainCard = document.getElementById("mainCard");
 let prevBtn = document.getElementById("prevBtn");
@@ -53,6 +56,7 @@ function initialize() {
   stackStarted = false;
   flipBtn.innerText = "click to start";
   resetColor();
+  position.innerText = "";
 }
 
 //event listeners for each stack
@@ -107,13 +111,15 @@ function loadQuestions(url) {
       // console.log(questions);
       // make the array accessible outside of this function
       storedQuestions = questions;
-      // console.log(storedQuestions);
+      console.log(storedQuestions);
+      positionDisplay();
 
       //go through the array with a for loop
       for (let i = 0; i < questions.length; i++) {
         // console.log(questions[i].gsx$definition.$t);
         // displayText.innerHTML=questions[i].gsx$definition.$t;
-        mainCard.innerHTML = '<p>' + questions[questionCounter].gsx$term.$t + '</p>';
+        mainCard.innerHTML =
+          "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
         // prevBtn.innerText=questions[i].gsx$choice2.$t;
         // flipBtn.innerText=questions[i].gsx$choice3.$t;
         // nextBtn.innerText=questions[i].gsx$choice4.$t;
@@ -134,23 +140,40 @@ flipBtn.addEventListener("click", function () {
   if (!stackStarted) {
     loadQuestions(url_pt1 + apikey + stackSelected + url_pt2);
     stackStarted = true;
-    flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP';
+    flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP OVER';
     enableArrows();
   } else {
     flipCard();
   }
 });
 
+// let colorString = toString(storedQuestions[questionCounter].gsx$color.$t);
+// console.log(colorString);
+
 mainCard.addEventListener("click", function () {
-  // console.log(storedQuestions);
+  console.log(storedQuestions);
 
   enableArrows();
 
   if (!stackStarted) {
-    changeColor();
+    // debugger;
     loadQuestions(url_pt1 + apikey + stackSelected + url_pt2);
-    stackStarted = true;
-    flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP';
+
+    // add timeout here
+
+    var delayInMilliseconds = 1000; //1 second
+
+    setTimeout(function () {
+      changeColor(storedQuestions[questionCounter].gsx$color.$t);
+    }, delayInMilliseconds);
+
+    setTimeout(function () {
+      stackStarted = true;
+    flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP OVER';
+    }, delayInMilliseconds);
+
+    
+    // positionDisplay();
   } else {
     flipCard();
   }
@@ -158,52 +181,79 @@ mainCard.addEventListener("click", function () {
 
 // console.log(termFirst);
 
-function resetColor(){
-  mainCard.classList.remove('green');
-    mainCard.classList.add('btn-dark');
+function resetColor() {
+  mainCard.classList.remove("green", "blue", "pink");
+  mainCard.classList.add("btn-dark");
 }
 
-function changeColor(){
-  mainCard.classList.add('green');
-    mainCard.classList.remove('btn-dark');
+function changeColor(color) {
+  // mainCard.classList.add('green');
+  mainCard.classList.remove("btn-dark");
+  mainCard.classList.remove("green", "blue", "pink");
+  mainCard.classList.add(color);
 }
 
 function flipCard() {
   // console.log(termFirst);
   // console.log(questionCounter);
-  changeColor();
 
+  changeColor(storedQuestions[questionCounter].gsx$color.$t);
 
   if (termFirst) {
-    mainCard.innerHTML = '<def>' + storedQuestions[questionCounter].gsx$definition.$t + '</def>';
+    mainCard.innerHTML =
+      "<def>" + storedQuestions[questionCounter].gsx$definition.$t + "</def>";
     termFirst = false;
+    flipBtn.classList.remove('btn-dark');
+    flipBtn.classList.add('btn-light');
+    flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP BACK';
   } else {
-    mainCard.innerHTML = '<p>' + storedQuestions[questionCounter].gsx$term.$t + '</p>';
+    mainCard.innerHTML =
+      "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
     termFirst = true;
+    flipBtn.classList.remove('btn-light');
+    flipBtn.classList.add('btn-dark');
+    flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP OVER';
+    
   }
+}
+
+function positionDisplay() {
+  let currentQ = questionCounter + 1;
+  let totalQ = storedQuestions.length.toString();
+
+  position.innerText = currentQ + " of " + totalQ;
+
+  // position.innerText = (questionCounter + 1) + " of " ( storedQuestions.length + 1 );
 }
 
 //event listener for prev button
 //for loop that goes through each index
 //must reset to last [.length] once it hits the first one
 prevBtn.addEventListener("click", function () {
+  flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP OVER';
+  console.log(questionCounter);
+
   if (questionCounter > 0) {
     questionCounter--;
   } else {
     questionCounter = storedQuestions.length - 1;
   }
 
-  mainCard.innerHTML = '<p>' + storedQuestions[questionCounter].gsx$term.$t + '</p>';
+  mainCard.innerHTML =
+    "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+  changeColor(storedQuestions[questionCounter].gsx$color.$t);
+
+  positionDisplay();
+
   // console.log(questionCounter);
 });
-
-
 
 //event listener for next button
 //for loop that goes through each index
 //must reset to first [0] once it hits the last one
 nextBtn.addEventListener("click", function () {
   termFirst = true;
+  flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP OVER';
   // console.log(questionCounter);
 
   if (questionCounter < storedQuestions.length - 1) {
@@ -212,7 +262,11 @@ nextBtn.addEventListener("click", function () {
     questionCounter = 0;
   }
 
-  mainCard.innerHTML = '<p>' + storedQuestions[questionCounter].gsx$term.$t + '</p>';
+  mainCard.innerHTML =
+    "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+  changeColor(storedQuestions[questionCounter].gsx$color.$t);
+
   // console.log(questionCounter);
   // console.log(termFirst);
+  positionDisplay();
 });
