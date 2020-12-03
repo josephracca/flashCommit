@@ -230,7 +230,7 @@ function positionDisplay() {
 //for loop that goes through each index
 //must reset to last [.length] once it hits the first one
 prevBtn.addEventListener("click", function () {
-  flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP OVER';
+  // flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP OVER';
   console.log(questionCounter);
 
   if (questionCounter > 0) {
@@ -253,7 +253,7 @@ prevBtn.addEventListener("click", function () {
 //must reset to first [0] once it hits the last one
 nextBtn.addEventListener("click", function () {
   termFirst = true;
-  flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP OVER';
+  // flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP OVER';
   // console.log(questionCounter);
 
   if (questionCounter < storedQuestions.length - 1) {
