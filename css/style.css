@@ -16,7 +16,7 @@ html, body {
 
 h1 {
     font-size: 50px;
-    line-height: 50px;
+    line-height: 50px!important;
     letter-spacing: -5px;
     text-align: center;
 }
@@ -36,17 +36,17 @@ h3 {
 
 .green {
     background-color: #AFD951;
-    color: black;
+    color: black!important;
 }
 
 .pink {
     background-color: #E66DCB;
-    color: black;
+    color: black!important;
 }
 
 .blue {
     background-color: #2FE0EF;
-    color: black;
+    color: black!important;
 }
 
 .navbar {
@@ -63,7 +63,7 @@ h3 {
 
 p {
     font-size: 30px;
-    line-height: 35px;
+    line-height: 35px!important;
     font-weight: 600;
     text-align: center;
 }
@@ -80,9 +80,10 @@ a:hover {
 }
 
 def {
-    font-size: 20px;
-    line-height: 25px;
-    text-align: left;
+    font-size: 20px!important;
+    line-height: 25px!important;
+    text-align: left!important;
+    font-weight: 400!important;
 }
 
 .container-fluidHuge {
@@ -117,13 +118,13 @@ def {
 @media (min-width: 768px) {
     p {
         font-size: 40px;
-        line-height: 46px;
+        line-height: 46px!important;
         font-weight: 600;
     }
     def {
-        font-size: 30px;
-        line-height: 35px;
-        text-align: left;
+        font-size: 30px!important;
+        line-height: 35px!important;
+        text-align: left!important;
     }
     #stacksMenu {
         z-index: 1000;
@@ -137,17 +138,17 @@ def {
 @media (min-width: 992px) {
     h1 {
         font-size: 80px;
-        line-height: 80px;
+        line-height: 80px!important;
         letter-spacing: -5px;
     }
     p {
         font-size: 50px;
-        line-height: 60px;
+        line-height: 60px!important;
         font-weight: 600;
     }
     def {
-        font-size: 30px;
-        text-align: left;
+        font-size: 30px!important;
+        text-align: left!important;
     }
     h3 {
         font-size: 24px;
@@ -160,7 +161,7 @@ def {
 @media (min-width: 1200px) {
     h1 {
         font-size: 90px;
-        line-height: 90px;
+        line-height: 90px!important;
         letter-spacing: -5px;
     }
     p {
@@ -169,8 +170,8 @@ def {
         font-weight: 600;
     }
     def {
-        font-size: 30px;
-        text-align: left;
+        font-size: 30px!important;
+        text-align: left!important;
     }
     .container-fluidHuge {
         max-width: 100%;
@@ -197,7 +198,7 @@ def {
 /* more colors*/
 
 .csColor {
-    background-color: #0A549D;
+    background-color: #00da6d;
 }
 
 .csColorL {
@@ -230,6 +231,7 @@ def {
     max-width: 800px;
     height: 500px;
     overflow-y: auto;
+    overflow-x: auto;
 }
 
 
@@ -253,4 +255,74 @@ def {
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: rgb(255, 255, 255); 
+  }
+
+  .footerText{
+      font-size: 10px;
+      opacity: 75%;
+      text-align: center;
+  }
+
+
+  /* CARD FLIP */
+
+  .scene {
+    width: 100%;
+    height: 500px;
+    margin: 40px 0;
+    perspective: 600px;
+    border-radius: 5px;
+
+  }
+  
+  .card {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform-origin: center right;
+    transition: transform 1s;
+    border: 0px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    line-height: 35px!important;
+
+    
+
+
+  }
+  
+  .card.is-flipped {
+    transform: translateX(-100%) rotateY(-180deg);
+  }
+  
+  .card__face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    backface-visibility: hidden;
+    border-radius: 5px;
+
+  }
+  
+  .card__face--front {
+    /* background: red; */
+    border-radius: 5px;
+    overflow-y: auto;
+    overflow-x: auto;
+
+  }
+  
+  .card__face--back {
+    /* background: blue; */
+    transform: rotateY(180deg);
+    border-radius: 5px;
+    overflow-y: auto;
+    overflow-x: auto;
+
   }

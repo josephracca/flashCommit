@@ -2,13 +2,17 @@ let inputText = document.getElementById("inputText");
 
 let displayText = document.getElementById("displayText");
 let position = document.getElementById("position");
-let category = document.getElementById('category');
+let category = document.getElementById("category");
 
 let closeBtn = document.getElementById("closeBtn");
 let stacks = document.getElementById("stacks");
 let stacksheader = document.getElementById("stacksheader");
 
 let mainCard = document.getElementById("mainCard");
+
+let frontCard = document.getElementById("frontCard");
+let backCard = document.getElementById("backCard");
+
 let prevBtn = document.getElementById("prevBtn");
 let flipBtn = document.getElementById("flipBtn");
 let nextBtn = document.getElementById("nextBtn");
@@ -59,7 +63,7 @@ function closeLibrary() {
 }
 
 function openLibrary() {
-  stacksMenu.classList.add('slideRight');
+  stacksMenu.classList.add("slideRight");
 
   stacks.classList.remove("d-none");
   libraryOpen = true;
@@ -79,7 +83,7 @@ function openLibrary() {
 // CLOSE BUTTON
 closeBtn.addEventListener("click", function () {
   // this closes the stack library so hide everything but the icon and then also
-  console.log("close pressed");
+  // console.log("close pressed");
   if (libraryOpen) {
     closeLibrary();
   } else {
@@ -88,12 +92,11 @@ closeBtn.addEventListener("click", function () {
 });
 
 stackIcon.addEventListener("click", function () {
-    if (libraryOpen) {
+  if (libraryOpen) {
     closeLibrary();
   } else {
     openLibrary();
   }
-
 });
 
 document.getElementById("nextBtn").disabled = true;
@@ -124,60 +127,103 @@ function initialize() {
   position.innerText = "";
   questionCounter = 0;
   category.innerText = "New stack selected...";
-  closeLibrary();
-
+  // closeLibrary();
 }
 
 //event listeners for each stack
 //this will push the correct sheet from the spreadsheet to the url
 csStack.addEventListener("click", function () {
-  mainCard.innerHTML = "<h1>C#</h1><div class='centerAlign'>(click to start)</div>";
+  mainCard.innerHTML =
+    "<h1>C#</h1><div class='centerAlign'>(click to start)</div>";
   stackSelected = sheet1;
   disableArrows();
   initialize();
   mainCard.classList =
-    "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
-  mainCard.classList.add("csColor");
+  "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
+mainCard.classList.add("csColor");
+
+
+  // TEST
+  frontCard.innerHTML =
+    "<h1>C#</h1><div class='centerAlign'>(click to start)</div>";
+  frontCard.classList =
+  "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
+frontCard.classList.add("csColor");
+
 });
 
 htmlStack.addEventListener("click", function () {
-  mainCard.innerHTML = "<h1>html</h1><div class='centerAlign'>(click to start)</div>";
+  mainCard.innerHTML =
+    "<h1>html</h1><div class='centerAlign'>(click to start)</div>";
   stackSelected = sheet2;
   disableArrows();
   initialize();
   mainCard.classList =
     "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
   mainCard.classList.add("htmlColor");
+    // TEST
+      frontCard.innerHTML =
+    "<h1>html</h1><div class='centerAlign'>(click to start)</div>";
+  frontCard.classList =
+  "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
+frontCard.classList.add("htmlColor");
+    
+
 });
 
 cssStack.addEventListener("click", function () {
-  mainCard.innerHTML = "<h1>css</h1><div class='centerAlign'>(click to start)</div>";
+  mainCard.innerHTML =
+    "<h1>css</h1><div class='centerAlign'>(click to start)</div>";
   stackSelected = sheet3;
   disableArrows();
   initialize();
   mainCard.classList =
     "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
   mainCard.classList.add("cssColor");
+    // TEST
+      frontCard.innerHTML =
+    "<h1>css</h1><div class='centerAlign'>(click to start)</div>";
+  frontCard.classList =
+  "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
+frontCard.classList.add("cssColor");
+
 });
 
 javascriptStack.addEventListener("click", function () {
-  mainCard.innerHTML = "<h1>javascript</h1><div class='centerAlign'>(click to start)</div>";
+  mainCard.innerHTML =
+    "<h1>javascript</h1><div class='centerAlign'>(click to start)</div>";
   stackSelected = sheet4;
   disableArrows();
   initialize();
   mainCard.classList =
     "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
   mainCard.classList.add("jsColor");
+    // TEST
+      frontCard.innerHTML =
+    "<h1>javascript</h1><div class='centerAlign'>(click to start)</div>";
+  frontCard.classList =
+  "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
+frontCard.classList.add("jsColor");
+
 });
 
 bootstrapStack.addEventListener("click", function () {
-  mainCard.innerHTML = "<h1>bootstrap</h1><div class='centerAlign'>(click to start)</div>";
+  mainCard.innerHTML =
+    "<h1>bootstrap</h1><div class='centerAlign'>(click to start)</div>";
   stackSelected = sheet5;
   disableArrows();
   initialize();
   mainCard.classList =
     "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
   mainCard.classList.add("bootstrapColor");
+    // TEST
+    frontCard.innerHTML =
+    "<h1>bootstrap</h1><div class='centerAlign'>(click to start)</div>";
+  frontCard.classList =
+  "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
+frontCard.classList.add("bootstrapColor");
+    
+
 });
 
 //change the number above to coincide with the sheet
@@ -194,12 +240,12 @@ function loadQuestions(url) {
       let questions = JSON.parse(this.responseText).feed.entry;
       let stackName = JSON.parse(this.responseText).feed.title.$t;
 
-      console.log(stackName);
+      // console.log(stackName);
       // console.log(questions);
       // make the array accessible outside of this function
       storedQuestions = questions;
       nowStudying = stackName;
-      console.log(storedQuestions);
+      // console.log(storedQuestions);
       positionDisplay();
 
       //go through the array with a for loop
@@ -229,6 +275,7 @@ flipBtn.addEventListener("click", function () {
     displayFirst();
   } else {
     flipCard();
+    newFlipCard();
   }
 });
 
@@ -250,20 +297,24 @@ function displayFirst() {
     mainCard.innerHTML =
       "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
     changeColor(storedQuestions[questionCounter].gsx$color.$t);
+
+    frontCard.innerHTML =
+      "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+    changeColor(storedQuestions[questionCounter].gsx$color.$t);
   }, delayInMilliseconds);
 
   setTimeout(function () {
     flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP OVER';
   }, delayInMilliseconds);
 
-  console.log(stackStarted);
+  // console.log(stackStarted);
 
   // positionDisplay();
 }
 
 mainCard.addEventListener("click", function () {
   // console.log(storedQuestions);
-  console.log(stackStarted);
+  // console.log(stackStarted);
 
   if (!stackStarted) {
     displayFirst();
@@ -293,6 +344,33 @@ function changeColor(color) {
     "csColorD"
   );
   mainCard.classList.add(color);
+
+  // test
+  frontCard.classList =
+    "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
+  frontCard.classList.remove("btn", "btn-dark");
+  frontCard.classList.remove(
+    "green",
+    "blue",
+    "pink",
+    "csColor",
+    "csColorL",
+    "csColorD"
+  );
+  frontCard.classList.add(color);
+
+  backCard.classList =
+    "card__face card__face--back  btn btn-dark justify-content-center p-3 p-lg-5";
+  backCard.classList.remove("btn", "btn-dark");
+  backCard.classList.remove(
+    "green",
+    "blue",
+    "pink",
+    "csColor",
+    "csColorL",
+    "csColorD"
+  );
+  backCard.classList.add(color);
 }
 
 function flipCard() {
@@ -308,6 +386,10 @@ function flipCard() {
     flipBtn.classList.remove("btn-dark");
     flipBtn.classList.add("btn-light");
     flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP BACK';
+
+    // TEST
+    backCard.innerHTML =
+      "<def>" + storedQuestions[questionCounter].gsx$definition.$t + "</def>";
   } else {
     mainCard.innerHTML =
       "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
@@ -316,7 +398,7 @@ function flipCard() {
   }
 }
 
-function flipOver(){
+function flipOver() {
   flipBtn.classList.remove("btn-light");
   flipBtn.classList.add("btn-dark");
   flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP OVER';
@@ -336,10 +418,13 @@ function positionDisplay() {
 //for loop that goes through each index
 //must reset to last [.length] once it hits the first one
 prevBtn.addEventListener("click", function () {
-  flipOver();
   termFirst = true;
+  card.classList.toggle("is-flipped");
+  flipOver();
 
-  console.log(questionCounter);
+
+
+  // console.log(questionCounter);
 
   if (questionCounter > 0) {
     questionCounter--;
@@ -349,6 +434,12 @@ prevBtn.addEventListener("click", function () {
 
   mainCard.innerHTML =
     "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+
+      // test
+  frontCard.innerHTML =
+  "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+backCard.innerHTML =
+  "<p>" + storedQuestions[questionCounter].gsx$definition.$t + "</p>";
   changeColor(storedQuestions[questionCounter].gsx$color.$t);
 
   positionDisplay();
@@ -361,6 +452,8 @@ prevBtn.addEventListener("click", function () {
 //must reset to first [0] once it hits the last one
 nextBtn.addEventListener("click", function () {
   termFirst = true;
+  card.classList.toggle("is-flipped");
+
   flipOver();
   // console.log(questionCounter);
 
@@ -372,9 +465,30 @@ nextBtn.addEventListener("click", function () {
 
   mainCard.innerHTML =
     "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+
+  // test
+  frontCard.innerHTML =
+    "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+  backCard.innerHTML =
+    "<p>" + storedQuestions[questionCounter].gsx$definition.$t + "</p>";
+
   changeColor(storedQuestions[questionCounter].gsx$color.$t);
 
   // console.log(questionCounter);
   // console.log(termFirst);
   positionDisplay();
 });
+
+let card = document.querySelector(".card");
+card.addEventListener("click", function () {
+  newFlipCard();
+});
+
+function newFlipCard() {
+  if (!stackStarted) {
+    displayFirst();
+  } else {
+    flipCard();
+    card.classList.toggle("is-flipped");
+  }
+}
