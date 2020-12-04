@@ -17,6 +17,7 @@
     integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/wickedcss.min.css">
   <link rel="shortcut icon" href="./images/favicon.png" />
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -40,93 +41,126 @@
 
   <!-- NAV BAR -->
 
-  <div class="container-fluid pt-3 navbar justify-content-center">
-    <h2 class="text-center greenText"><img src="./images/logo.svg"> flash.commit</u></h2>
+  <div class="slideDown container-fluid pt-3 navbar justify-content-center d-flex">
+    <div id="stackIcon" type="button" class="mr-auto pb-2"><img src="./images/stacks.svg"></i></div>
+    <div class="d-none d-md-block">
+      <h2 class="text-center greenText"><img src="./images/logo.svg"> flash.commit</h2>
+    </div>
+    <div class="d-md-none">
+      <h2 class="text-center greenText"><img src="./images/logo.svg"></h2>
+    </div>
+    <div class="ml-auto pb-2" style="width: 29.42px;"></i></div>
   </div>
 
 
   <!-- INNER -->
-  <div class="container-fluid full-height">
-    <div class="row full-height">
+  <div class="container-fluid full-height container-fluidHuge">
+    <div class="row height-100">
 
 
-      <!-- STACK LIBRARY -->
-      <div class="col-4 px-5 sidebar pt-5">
-        <h2 class="pb-4"><img src="./images/stacks.svg"></i> CARD STACKS</h2>
+      <!-- STACK LIBRARY FULL-->
+      <div id="stacksMenu" class="slideRight col-11 col-sm-4 px-4 px-lg-5 sidebar pt-4 pt-lg-5">
+
         <div class="row">
+          <div class="col-12">
+            <div class="d-flex pb-4">
+              <h3 id="stacksheader">CARD STACKS</h3>
+              <div id="closeBtn" type="button" class="ml-auto"><i class="far fa-times-circle"></i></div>
+            </div>
+          </div>
 
-          <div class="col-12 col-xl-6 pb-3">  
-          <button id="csStack" type="button"
-              class="d-flex w-100 py-3 py-xl-5 mb-3 btn btn-light justify-content-center">
-              <h3>C#</h3>
-            </button>
-        </div>
 
-            <div class="col-12 col-xl-6 pb-3">
-            <button id="htmlStack" type="button"
-              class="d-flex w-100 py-3 py-xl-5 mb-3 btn btn-light justify-content-center">
-              <h3>html</h3>
-            </button>
-        </div>
+          <div id="stacks" class="row">
+            <div class="col-12 col-xl-6 pb-1 pb-xl-3">
+              <button id="csStack" type="button"
+                class="d-flex w-100 py-3 py-xl-5 mb-1 mb-sm-3 btn btn-dark justify-content-center csColor">
+                <img src="https://img.icons8.com/color/48/000000/c-plus-plus-logo.png" />
+                <!-- <img src="https://img.icons8.com/ios/50/000000/c-sharp-logo.png"/> -->
+                <!-- <h3>C#</h3> -->
+              </button>
+            </div>
 
-            <div class="col-12 col-xl-6 pb-3">
-            <button id="cssStack" type="button"
-              class="d-flex w-100 py-3 py-xl-5 mb-3 btn btn-light justify-content-center">
-              <h3>css</h3>
-            </button>
-        </div>
+            <div class="col-12 col-xl-6 pb-1 pb-xl-3">
+              <button id="htmlStack" type="button"
+                class="d-flex w-100 py-3 py-xl-5 mb-1 mb-sm-3 btn btn-dark justify-content-center htmlColor">
+                <img src="https://img.icons8.com/color/48/000000/html-5.png" />
+                <!-- <img src="https://img.icons8.com/ios/50/000000/html-5.png"/> -->
+                <!-- <h3>html</h3> -->
+              </button>
+            </div>
 
-            <div class="col-12 col-xl-6 pb-3">
-            <button id="javascriptStack" type="button"
-              class="d-flex w-100 py-3 py-xl-5 mb-3 btn btn-light justify-content-center">
-              <h3>javascript</h3>
-            </button>
-        </div>
+            <div class="col-12 col-xl-6 pb-1 pb-xl-3">
+              <button id="cssStack" type="button"
+                class="d-flex w-100 py-3 py-xl-5 mb-1 mb-sm-3 btn btn-dark justify-content-center cssColor">
+                <img src="https://img.icons8.com/color/48/000000/css3.png" />
+                <!-- <img src="https://img.icons8.com/ios/50/000000/css3.png"/> -->
+                <!-- <h3>css</h3> -->
+              </button>
+            </div>
 
-            <div class="col-12 col-xl-6 pb-3">
-            <button id="bootstrapStack" type="button"
-              class="d-flex w-100 py-3 py-xl-5 mb-3 btn btn-light justify-content-center">
-              <h3>bootstrap</h3>
-            </button>
-        </div>
+            <div class="col-12 col-xl-6 pb-1 pb-xl-3">
+              <button id="javascriptStack" type="button"
+                class="d-flex w-100 py-3 py-xl-5 mb-1 mb-sm-3 btn btn-dark justify-content-center jsColor">
+                <!-- <img src="https://img.icons8.com/ios/50/000000/javascript.png"/> -->
+                <img src="https://img.icons8.com/color/50/000000/javascript.png" />
+                <!-- <h3>javascript</h3> -->
+              </button>
+            </div>
+
+            <div class="col-12 col-xl-6 pb-1 pb-xl-3">
+              <button id="bootstrapStack" type="button"
+                class="d-flex w-100 py-3 py-xl-5 mb-1 mb-sm-3 btn btn-dark justify-content-center bootstrapColor">
+                <!-- <img src="https://img.icons8.com/windows/32/000000/bootstrap.png"/> -->
+                <img src="https://img.icons8.com/color/48/000000/bootstrap.png" />
+                <!-- <h3>bootstrap</h3> -->
+              </button>
+            </div>
+
+          </div>
 
         </div>
       </div>
 
       <!-- FLASH CARD -->
-      <div class="col-8 pt-5">
-        <div class="row d-flex justify-content-center">
-          <button id="mainCard" type="button" class="btn btn-dark justify-content-center m-2 p-5 shadow ">
-            <h1>select<br>a stack <br>to study<br>
-              <--------- </h1>
-          </button>
+      <div id="flashCard" class="slideLeft col-12 col-sm-8 pt-5">
 
+
+        <div id="category" class="row d-flex justify-content-center pb-2">
+          (no category selected)
+        </div>
+
+        <div class="row d-flex justify-content-center">
+          <button id="mainCard" type="button" class=" btn btn-dark justify-content-center m-3 p-3 p-md-4 p-lg-5 shadow ">
+            <h1>select<br>a stack <br>to study<br>
+              <----- </h1>
+          </button>
         </div>
         <!-- CARD CONTROLS -->
         <div class="row d-flex justify-content-center align-items-center">
           <div class="m-2 pt-2">
             <h2><i id="prevBtn" type="button" class="fas fa-chevron-circle-left"></i></h2>
           </div>
-          <button id="flipBtn" type="button" class="px-5 btn btn-dark justify-content-center m-2">
-            [ SELECT STACK ]
+          <button id="flipBtn" type="button" class="px-1 px-sm-5 btn btn-dark justify-content-center m-2">
+            [SELECT STACK]
           </button>
-          <div  type="button" class="m-2 pt-2">
+          <div type="button" class="m-2 pt-2">
             <h2><i id="nextBtn" type="button" class="fas fa-chevron-circle-right"></i></h2>
           </div>
         </div>
 
         <!-- card number -->
-        <div id="position" class="row d-flex justify-content-center">
-          
+        <div id="position" class="row d-flex justify-content-center pb-5">
         </div>
+
       </div>
     </div>
   </div>
 
 
-
   <!-- FOOTER -->
-
+<div class="container-fluid text-center navbar">
+  hand-crafted by <a class="" href="https://josephraccainit.azurewebsites.net/">joseph racca</a>
+</div>
 
 
 
