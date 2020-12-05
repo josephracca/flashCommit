@@ -51,7 +51,7 @@ function closeLibrary() {
   closeBtn.classList.add("d-none");
   stacksheader.classList.add("d-none");
   stacksMenu.classList.remove(
-    "col-11",
+    "col-12",
     "col-sm-4",
     "px-4",
     "px-lg-5",
@@ -70,7 +70,7 @@ function openLibrary() {
   closeBtn.classList.remove("d-none");
   stacksheader.classList.remove("d-none");
   stacksMenu.classList.add(
-    "col-11",
+    "col-12",
     "col-sm-4",
     "px-4",
     "px-lg-5",
@@ -118,6 +118,7 @@ function disableArrows() {
 }
 
 function initialize() {
+  closeLibrary();
   enableBtns();
   stackStarted = false;
   flipBtn.innerText = "click to start";
