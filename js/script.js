@@ -133,22 +133,23 @@ function initialize() {
 //event listeners for each stack
 //this will push the correct sheet from the spreadsheet to the url
 csStack.addEventListener("click", function () {
+
   mainCard.innerHTML =
     "<h1>C#</h1><div class='centerAlign'>(click to start)</div>";
   stackSelected = sheet1;
   disableArrows();
   initialize();
   mainCard.classList =
-  "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
-mainCard.classList.add("csColor");
-
+    "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
+  mainCard.classList.add("csColor");
 
   // TEST
   frontCard.innerHTML =
     "<h1>C#</h1><div class='centerAlign'>(click to start)</div>";
   frontCard.classList =
-  "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
-frontCard.classList.add("csColor");
+    "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
+  frontCard.classList.add("csColor");
+  // newFlipCard();
 
 });
 
@@ -161,14 +162,12 @@ htmlStack.addEventListener("click", function () {
   mainCard.classList =
     "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
   mainCard.classList.add("htmlColor");
-    // TEST
-      frontCard.innerHTML =
+  // TEST
+  frontCard.innerHTML =
     "<h1>html</h1><div class='centerAlign'>(click to start)</div>";
   frontCard.classList =
-  "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
-frontCard.classList.add("htmlColor");
-    
-
+    "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
+  frontCard.classList.add("htmlColor");
 });
 
 cssStack.addEventListener("click", function () {
@@ -180,13 +179,12 @@ cssStack.addEventListener("click", function () {
   mainCard.classList =
     "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
   mainCard.classList.add("cssColor");
-    // TEST
-      frontCard.innerHTML =
+  // TEST
+  frontCard.innerHTML =
     "<h1>css</h1><div class='centerAlign'>(click to start)</div>";
   frontCard.classList =
-  "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
-frontCard.classList.add("cssColor");
-
+    "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
+  frontCard.classList.add("cssColor");
 });
 
 javascriptStack.addEventListener("click", function () {
@@ -198,13 +196,12 @@ javascriptStack.addEventListener("click", function () {
   mainCard.classList =
     "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
   mainCard.classList.add("jsColor");
-    // TEST
-      frontCard.innerHTML =
+  // TEST
+  frontCard.innerHTML =
     "<h1>javascript</h1><div class='centerAlign'>(click to start)</div>";
   frontCard.classList =
-  "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
-frontCard.classList.add("jsColor");
-
+    "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
+  frontCard.classList.add("jsColor");
 });
 
 bootstrapStack.addEventListener("click", function () {
@@ -216,14 +213,12 @@ bootstrapStack.addEventListener("click", function () {
   mainCard.classList =
     "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
   mainCard.classList.add("bootstrapColor");
-    // TEST
-    frontCard.innerHTML =
+  // TEST
+  frontCard.innerHTML =
     "<h1>bootstrap</h1><div class='centerAlign'>(click to start)</div>";
   frontCard.classList =
-  "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
-frontCard.classList.add("bootstrapColor");
-    
-
+    "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
+  frontCard.classList.add("bootstrapColor");
 });
 
 //change the number above to coincide with the sheet
@@ -422,8 +417,6 @@ prevBtn.addEventListener("click", function () {
   card.classList.toggle("is-flipped");
   flipOver();
 
-
-
   // console.log(questionCounter);
 
   if (questionCounter > 0) {
@@ -435,11 +428,11 @@ prevBtn.addEventListener("click", function () {
   mainCard.innerHTML =
     "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
 
-      // test
+  // test
   frontCard.innerHTML =
-  "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
-backCard.innerHTML =
-  "<p>" + storedQuestions[questionCounter].gsx$definition.$t + "</p>";
+    "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+  backCard.innerHTML =
+    "<def>" + storedQuestions[questionCounter].gsx$definition.$t + "</def>";
   changeColor(storedQuestions[questionCounter].gsx$color.$t);
 
   positionDisplay();
@@ -451,8 +444,11 @@ backCard.innerHTML =
 //for loop that goes through each index
 //must reset to first [0] once it hits the last one
 nextBtn.addEventListener("click", function () {
+  // debugger;
+  //currently it's taking it and flipping the card back and forth between def and term, 
+  // BUT we only want it to display the first term
   termFirst = true;
-  card.classList.toggle("is-flipped");
+  // card.classList.toggle("is-flipped");
 
   flipOver();
   // console.log(questionCounter);
@@ -470,7 +466,7 @@ nextBtn.addEventListener("click", function () {
   frontCard.innerHTML =
     "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
   backCard.innerHTML =
-    "<p>" + storedQuestions[questionCounter].gsx$definition.$t + "</p>";
+    "<def>" + storedQuestions[questionCounter].gsx$definition.$t + "</def>";
 
   changeColor(storedQuestions[questionCounter].gsx$color.$t);
 
