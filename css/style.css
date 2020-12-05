@@ -271,7 +271,7 @@ def {
     height: 500px;
     margin: 40px 0;
     perspective: 600px;
-    border-radius: 5px;
+
 
   }
   
@@ -285,11 +285,9 @@ def {
     transform-origin: center right;
     transition: transform 1s;
     border: 0px solid rgb(0, 0, 0);
-    border-radius: 5px;
+    border-radius: 10px;
     line-height: 35px!important;
-
-    
-
+    margin: auto;
 
   }
   

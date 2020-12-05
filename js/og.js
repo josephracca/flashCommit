@@ -28,7 +28,6 @@ let sheet3 = "/3";
 let sheet4 = "/4";
 let sheet5 = "/5";
 let stackSelected = "";
-let stackPicked = false;
 
 let csStack = document.getElementById("csStack");
 let htmlStack = document.getElementById("htmlStack");
@@ -58,7 +57,8 @@ function closeLibrary() {
     "pt-4",
     "pt-lg-5"
   );
-
+  // stackIcon.classList.remove('pr-2');
+  // stackIcon.classList.add('p-4');
   flashCard.classList = "col-12 pt-5";
 }
 
@@ -82,6 +82,8 @@ function openLibrary() {
 
 // CLOSE BUTTON
 closeBtn.addEventListener("click", function () {
+  // this closes the stack library so hide everything but the icon and then also
+  // console.log("close pressed");
   if (libraryOpen) {
     closeLibrary();
   } else {
@@ -125,9 +127,13 @@ function initialize() {
   position.innerText = "";
   questionCounter = 0;
   category.innerText = "New stack selected...";
+  // closeLibrary();
 }
 
+//event listeners for each stack
+//this will push the correct sheet from the spreadsheet to the url
 csStack.addEventListener("click", function () {
+
   mainCard.innerHTML =
     "<h1>C#</h1><div class='centerAlign'>(click to start)</div>";
   stackSelected = sheet1;
@@ -137,13 +143,14 @@ csStack.addEventListener("click", function () {
     "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
   mainCard.classList.add("csColor");
 
-  // FOR ANIMATED CARD
+  // TEST
   frontCard.innerHTML =
     "<h1>C#</h1><div class='centerAlign'>(click to start)</div>";
   frontCard.classList =
     "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
   frontCard.classList.add("csColor");
-  stackPicked = true;
+  // newFlipCard();
+
 });
 
 htmlStack.addEventListener("click", function () {
@@ -155,13 +162,12 @@ htmlStack.addEventListener("click", function () {
   mainCard.classList =
     "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
   mainCard.classList.add("htmlColor");
-  // FOR ANIMATED CARD
+  // TEST
   frontCard.innerHTML =
     "<h1>html</h1><div class='centerAlign'>(click to start)</div>";
   frontCard.classList =
     "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
   frontCard.classList.add("htmlColor");
-  stackPicked = true;
 });
 
 cssStack.addEventListener("click", function () {
@@ -173,13 +179,12 @@ cssStack.addEventListener("click", function () {
   mainCard.classList =
     "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
   mainCard.classList.add("cssColor");
-  // FOR ANIMATED CARD
+  // TEST
   frontCard.innerHTML =
     "<h1>css</h1><div class='centerAlign'>(click to start)</div>";
   frontCard.classList =
     "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
   frontCard.classList.add("cssColor");
-  stackPicked = true;
 });
 
 javascriptStack.addEventListener("click", function () {
@@ -191,13 +196,12 @@ javascriptStack.addEventListener("click", function () {
   mainCard.classList =
     "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
   mainCard.classList.add("jsColor");
-  // FOR ANIMATED CARD
+  // TEST
   frontCard.innerHTML =
     "<h1>javascript</h1><div class='centerAlign'>(click to start)</div>";
   frontCard.classList =
     "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
   frontCard.classList.add("jsColor");
-  stackPicked = true;
 });
 
 bootstrapStack.addEventListener("click", function () {
@@ -209,27 +213,46 @@ bootstrapStack.addEventListener("click", function () {
   mainCard.classList =
     "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
   mainCard.classList.add("bootstrapColor");
-  // FOR ANIMATED CARD
+  // TEST
   frontCard.innerHTML =
     "<h1>bootstrap</h1><div class='centerAlign'>(click to start)</div>";
   frontCard.classList =
     "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
   frontCard.classList.add("bootstrapColor");
-  stackPicked = true;
 });
 
+//change the number above to coincide with the sheet
+
+//pull from google sheet URL
 function loadQuestions(url) {
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
+      // Typical action to be performed when the document is ready:
+      // console.log(JSON.parse(this.responseText));
 
+      //start by making it a variable
       let questions = JSON.parse(this.responseText).feed.entry;
       let stackName = JSON.parse(this.responseText).feed.title.$t;
 
+      // console.log(stackName);
+      // console.log(questions);
+      // make the array accessible outside of this function
       storedQuestions = questions;
       nowStudying = stackName;
-
+      // console.log(storedQuestions);
       positionDisplay();
+
+      //go through the array with a for loop
+      for (let i = 0; i < questions.length; i++) {
+        // console.log(questions[i].gsx$definition.$t);
+        // displayText.innerHTML=questions[i].gsx$definition.$t;
+        // mainCard.innerHTML =
+        //   "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+        // prevBtn.innerText=questions[i].gsx$choice2.$t;
+        // flipBtn.innerText=questions[i].gsx$choice3.$t;
+        // nextBtn.innerText=questions[i].gsx$choice4.$t;
+      }
     }
   };
   xhttp.open("GET", url, true);
@@ -238,29 +261,56 @@ function loadQuestions(url) {
 
 let termFirst = true;
 
+//event listener for flip button
+//replace inner text with the opposite ijnformation
+//maybe create a bool or value that sets it to 0 or 1?
+
+flipBtn.addEventListener("click", function () {
+  if (!stackStarted) {
+    displayFirst();
+  } else {
+    flipCard();
+    newFlipCard();
+  }
+});
+
+// let colorString = toString(storedQuestions[questionCounter].gsx$color.$t);
+// console.log(colorString);
+
 function displayFirst() {
   enableArrows();
   stackStarted = true;
+
+  // debugger;
   loadQuestions(url_pt1 + apikey + stackSelected + url_pt2);
-  var delayInMilliseconds = 1000;
+
+  // add timeout here
+
+  var delayInMilliseconds = 1000; //1 second
 
   setTimeout(function () {
-    mainCard.innerHTML = "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+    mainCard.innerHTML =
+      "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
     changeColor(storedQuestions[questionCounter].gsx$color.$t);
 
-    fillFront();
-    function fillFront(){
-      frontCard.innerHTML = "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
-    }
+    frontCard.innerHTML =
+      "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
     changeColor(storedQuestions[questionCounter].gsx$color.$t);
   }, delayInMilliseconds);
 
   setTimeout(function () {
     flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP OVER';
   }, delayInMilliseconds);
+
+  // console.log(stackStarted);
+
+  // positionDisplay();
 }
 
 mainCard.addEventListener("click", function () {
+  // console.log(storedQuestions);
+  // console.log(stackStarted);
+
   if (!stackStarted) {
     displayFirst();
   } else {
@@ -268,12 +318,15 @@ mainCard.addEventListener("click", function () {
   }
 });
 
+// console.log(termFirst);
+
 function resetColor() {
   mainCard.classList.remove("green", "blue", "pink");
   mainCard.classList.add("btn-dark");
 }
 
 function changeColor(color) {
+  // mainCard.classList.add('green');
   mainCard.classList =
     "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
   mainCard.classList.remove("btn-dark");
@@ -287,7 +340,7 @@ function changeColor(color) {
   );
   mainCard.classList.add(color);
 
-  // FOR ANIMATED CARD
+  // test
   frontCard.classList =
     "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
   frontCard.classList.remove("btn", "btn-dark");
@@ -315,10 +368,29 @@ function changeColor(color) {
   backCard.classList.add(color);
 }
 
-function flipBack() {
-  flipBtn.classList.remove("btn-dark");
-  flipBtn.classList.add("btn-light");
-  flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP BACK';
+function flipCard() {
+  // console.log(termFirst);
+  // console.log(questionCounter);
+
+  changeColor(storedQuestions[questionCounter].gsx$color.$t);
+
+  if (termFirst) {
+    mainCard.innerHTML =
+      "<def>" + storedQuestions[questionCounter].gsx$definition.$t + "</def>";
+    termFirst = false;
+    flipBtn.classList.remove("btn-dark");
+    flipBtn.classList.add("btn-light");
+    flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP BACK';
+
+    // TEST
+    backCard.innerHTML =
+      "<def>" + storedQuestions[questionCounter].gsx$definition.$t + "</def>";
+  } else {
+    mainCard.innerHTML =
+      "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+    termFirst = true;
+    flipOver();
+  }
 }
 
 function flipOver() {
@@ -327,104 +399,85 @@ function flipOver() {
   flipBtn.innerHTML = '<i class="fas fa-sync-alt"></i> FLIP OVER';
 }
 
-function flipCard() {
-  changeColor(storedQuestions[questionCounter].gsx$color.$t);
-
-
-
-  if (termFirst) {
-    mainCard.innerHTML =
-      "<def>" + storedQuestions[questionCounter].gsx$definition.$t + "</def>";
-    termFirst = false;
-
-    flipBack();
-
-    fillBack();
-  } else {
-    mainCard.innerHTML = "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
-    termFirst = true;
-    flipOver();
-  }
-}
-
 function positionDisplay() {
   let currentQ = questionCounter + 1;
   let totalQ = storedQuestions.length.toString();
 
   position.innerText = currentQ + " / " + totalQ;
-  category.innerText = "currently studying: " + nowStudying;
+  category.innerText = "current stack: " + nowStudying;
+
+  // position.innerText = (questionCounter + 1) + " of " ( storedQuestions.length + 1 );
 }
 
+//event listener for prev button
+//for loop that goes through each index
+//must reset to last [.length] once it hits the first one
 prevBtn.addEventListener("click", function () {
-  if (stackStarted) {
-    termFirst = true;
-    flipOver();
-    if (questionCounter > 0) {
-      questionCounter--;
-    } else {
-      questionCounter = storedQuestions.length - 1;
-    }
+  termFirst = true;
+  card.classList.toggle("is-flipped");
+  flipOver();
 
-    mainCard.innerHTML = "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+  // console.log(questionCounter);
 
-    // FOR ANIMATED CARD
-    fillFront();
-    function fillFront(){
-      frontCard.innerHTML = "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
-    }
-    fillBack();
-    changeColor(storedQuestions[questionCounter].gsx$color.$t);
-
-    positionDisplay();
+  if (questionCounter > 0) {
+    questionCounter--;
   } else {
+    questionCounter = storedQuestions.length - 1;
   }
 
+  mainCard.innerHTML =
+    "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+
+  // test
+  frontCard.innerHTML =
+    "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+  backCard.innerHTML =
+    "<def>" + storedQuestions[questionCounter].gsx$definition.$t + "</def>";
+  changeColor(storedQuestions[questionCounter].gsx$color.$t);
+
+  positionDisplay();
+
+  // console.log(questionCounter);
 });
 
-function fillBack(){
-  backCard.innerHTML = "<def>" + storedQuestions[questionCounter].gsx$definition.$t + "</def>";
-}
-
-function fillFront(){
-  frontCard.innerHTML = "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
-}
-
+//event listener for next button
+//for loop that goes through each index
+//must reset to first [0] once it hits the last one
 nextBtn.addEventListener("click", function () {
-  if (stackStarted) {
-    termFirst = true;
+  // debugger;
+  //currently it's taking it and flipping the card back and forth between def and term, 
+  // BUT we only want it to display the first term
+  termFirst = true;
+  // card.classList.toggle("is-flipped");
 
-    flipOver();
+  flipOver();
+  // console.log(questionCounter);
 
-    if (questionCounter < storedQuestions.length - 1) {
-      questionCounter++;
-    } else {
-      questionCounter = 0;
-    }
-
-    mainCard.innerHTML = "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
-
-    // FOR ANIMATED CARD
-    fillFront();
-    fillBack();
-    changeColor(storedQuestions[questionCounter].gsx$color.$t);
-    positionDisplay();
+  if (questionCounter < storedQuestions.length - 1) {
+    questionCounter++;
   } else {
+    questionCounter = 0;
   }
+
+  mainCard.innerHTML =
+    "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+
+  // test
+  frontCard.innerHTML =
+    "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+  backCard.innerHTML =
+    "<def>" + storedQuestions[questionCounter].gsx$definition.$t + "</def>";
+
+  changeColor(storedQuestions[questionCounter].gsx$color.$t);
+
+  // console.log(questionCounter);
+  // console.log(termFirst);
+  positionDisplay();
 });
 
 let card = document.querySelector(".card");
 card.addEventListener("click", function () {
-  if (stackPicked) {
-    newFlipCard();
-  } else {
-  }
-});
-
-flipBtn.addEventListener("click", function () {
-  if (!stackPicked) {
-  } else {
-    newFlipCard();
-  }
+  newFlipCard();
 });
 
 function newFlipCard() {
