@@ -349,6 +349,7 @@ function flipCard() {
 }
 
 function positionDisplay() {
+  console.log(questionCounter);
   let currentQ = questionCounter + 1;
   let totalQ = storedQuestions.length.toString();
 

@@ -8,10 +8,11 @@ html, body {
     background-size: cover;
     background-position: bottom;
     height: 100%;
+    /* margin: 0; */
 }
 
 .full-height {
-    height: 90%;
+    height: 100%;
 }
 
 h1 {
@@ -55,7 +56,7 @@ h3 {
 
 .footer {
     background-color: black;
-    position: bottom;
+    /* margin-top: 50px; */
 }
 
 .sidebar {
@@ -95,15 +96,16 @@ def {
     max-width: inherit;
 }
 
-.centerAlign{
+.centerAlign {
     text-align: center;
 }
 
-.btn{
+.btn {
     text-align: left;
 }
 
 /* // Extra small devices (portrait phones, less than 576px) */
+
 #stacksMenu {
     z-index: 1000;
     position: absolute;
@@ -120,7 +122,6 @@ def {
         position: static;
         box-shadow: 10px 10px 10px #15151541;
     }
-
 }
 
 /* // Medium devices (tablets, 768px and up) */
@@ -146,10 +147,7 @@ def {
         height: 500px;
         margin: 40px 0;
         perspective: 600px;
-    
-    
-      }
-
+    }
 }
 
 /* // Large devices (desktops, 992px and up) */
@@ -172,7 +170,6 @@ def {
     h3 {
         font-size: 24px;
     }
-
 }
 
 /* // Extra large devices (large desktops, 1200px and up) */
@@ -253,48 +250,49 @@ def {
     overflow-x: auto;
 }
 
-
 /* scrollbar */
+
 /* width */
+
 ::-webkit-scrollbar {
     width: 5px;
     /* background-color: transparent; */
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #0000001c; 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.192); 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgb(255, 255, 255); 
-  }
+}
 
-  .footerText{
-      font-size: 10px;
-      opacity: 75%;
-      text-align: center;
-  }
+/* Track */
 
+::-webkit-scrollbar-track {
+    background: #0000001c;
+}
 
-  /* CARD FLIP */
+/* Handle */
 
-  .scene {
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.192);
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(255, 255, 255);
+}
+
+.footerText {
+    font-size: 10px;
+    opacity: 75%;
+    text-align: center;
+}
+
+/* CARD FLIP */
+
+.scene {
     width: 100%;
-    height: 400px;
+    height: 450px;
     margin: 40px 0;
     perspective: 600px;
+}
 
-
-  }
-  
-  .card {
+.card {
     position: relative;
     width: 100%;
     max-width: 800px;
@@ -307,14 +305,14 @@ def {
     border-radius: 10px;
     line-height: 35px!important;
     margin: auto;
+    vertical-align: middle;
+}
 
-  }
-  
-  .card.is-flipped {
+.card.is-flipped {
     transform: translateX(-100%) rotateY(-180deg);
-  }
-  
-  .card__face {
+}
+
+.card__face {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -324,22 +322,26 @@ def {
     font-size: 40px;
     backface-visibility: hidden;
     border-radius: 5px;
+    vertical-align: middle;
+}
 
-  }
-  
-  .card__face--front {
+.card__face--front {
     /* background: red; */
     border-radius: 5px;
     overflow-y: auto;
     overflow-x: auto;
+    vertical-align: middle;
+}
 
-  }
-  
-  .card__face--back {
+.card__face--back {
     /* background: blue; */
     transform: rotateY(180deg);
     border-radius: 5px;
     overflow-y: auto;
     overflow-x: auto;
+    vertical-align: middle;
+}
 
-  }
+#flashCard {
+    z-index: 900;
+}
