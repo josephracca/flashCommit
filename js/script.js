@@ -123,7 +123,7 @@ function disableArrows() {
 }
 
 function initialize() {
-  closeLibrary();
+  // closeLibrary();
   enableBtns();
   stackStarted = false;
   flipBtn.innerText = "click to start";
@@ -264,7 +264,6 @@ function loadQuestions(url) {
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-
       let questions = JSON.parse(this.responseText).feed.entry;
       let stackName = JSON.parse(this.responseText).feed.title.$t;
 
@@ -288,12 +287,14 @@ function displayFirst() {
   var delayInMilliseconds = 1000;
 
   setTimeout(function () {
-    mainCard.innerHTML = "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+    mainCard.innerHTML =
+      "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
     changeColor(storedQuestions[questionCounter].gsx$color.$t);
 
     fillFront();
-    function fillFront(){
-      frontCard.innerHTML = "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+    function fillFront() {
+      frontCard.innerHTML =
+        "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
     }
     changeColor(storedQuestions[questionCounter].gsx$color.$t);
   }, delayInMilliseconds);
@@ -373,8 +374,6 @@ function flipOver() {
 function flipCard() {
   changeColor(storedQuestions[questionCounter].gsx$color.$t);
 
-
-
   if (termFirst) {
     mainCard.innerHTML =
       "<def>" + storedQuestions[questionCounter].gsx$definition.$t + "</def>";
@@ -384,7 +383,8 @@ function flipCard() {
 
     fillBack();
   } else {
-    mainCard.innerHTML = "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+    mainCard.innerHTML =
+      "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
     termFirst = true;
     flipOver();
   }
@@ -409,12 +409,14 @@ prevBtn.addEventListener("click", function () {
       questionCounter = storedQuestions.length - 1;
     }
 
-    mainCard.innerHTML = "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+    mainCard.innerHTML =
+      "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
 
     // FOR ANIMATED CARD
     fillFront();
-    function fillFront(){
-      frontCard.innerHTML = "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+    function fillFront() {
+      frontCard.innerHTML =
+        "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
     }
     fillBack();
     changeColor(storedQuestions[questionCounter].gsx$color.$t);
@@ -422,15 +424,16 @@ prevBtn.addEventListener("click", function () {
     positionDisplay();
   } else {
   }
-
 });
 
-function fillBack(){
-  backCard.innerHTML = "<def>" + storedQuestions[questionCounter].gsx$definition.$t + "</def>";
+function fillBack() {
+  backCard.innerHTML =
+    "<def>" + storedQuestions[questionCounter].gsx$definition.$t + "</def>";
 }
 
-function fillFront(){
-  frontCard.innerHTML = "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+function fillFront() {
+  frontCard.innerHTML =
+    "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
 }
 
 nextBtn.addEventListener("click", function () {
@@ -445,7 +448,8 @@ nextBtn.addEventListener("click", function () {
       questionCounter = 0;
     }
 
-    mainCard.innerHTML = "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
+    mainCard.innerHTML =
+      "<p>" + storedQuestions[questionCounter].gsx$term.$t + "</p>";
 
     // FOR ANIMATED CARD
     fillFront();
