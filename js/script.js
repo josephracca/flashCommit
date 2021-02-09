@@ -27,6 +27,8 @@ let sheet2 = "/2";
 let sheet3 = "/3";
 let sheet4 = "/4";
 let sheet5 = "/5";
+let sheet6 = "/6";
+let sheet7 = "/7";
 let stackSelected = "";
 let stackPicked = false;
 
@@ -35,6 +37,9 @@ let htmlStack = document.getElementById("htmlStack");
 let cssStack = document.getElementById("cssStack");
 let javascriptStack = document.getElementById("javascriptStack");
 let bootstrapStack = document.getElementById("bootstrapStack");
+let reactStack = document.getElementById("reactStack");
+let angularStack = document.getElementById("angularStack");
+
 let stacksMenu = document.getElementById("stacksMenu");
 let stackIcon = document.getElementById("stackIcon");
 
@@ -219,6 +224,42 @@ bootstrapStack.addEventListener("click", function () {
   stackPicked = true;
 });
 
+reactStack.addEventListener("click", function () {
+  mainCard.innerHTML =
+    "<h1>react</h1><div class='centerAlign'>(click to start)</div>";
+  stackSelected = sheet6;
+  disableArrows();
+  initialize();
+  mainCard.classList =
+    "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
+  mainCard.classList.add("reactColor");
+  // FOR ANIMATED CARD
+  frontCard.innerHTML =
+    "<h1>react</h1><div class='centerAlign'>(click to start)</div>";
+  frontCard.classList =
+    "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
+  frontCard.classList.add("reactColor");
+  stackPicked = true;
+});
+
+angularStack.addEventListener("click", function () {
+  mainCard.innerHTML =
+    "<h1>angular</h1><div class='centerAlign'>(click to start)</div>";
+  stackSelected = sheet7;
+  disableArrows();
+  initialize();
+  mainCard.classList =
+    "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
+  mainCard.classList.add("angularColor");
+  // FOR ANIMATED CARD
+  frontCard.innerHTML =
+    "<h1>angular</h1><div class='centerAlign'>(click to start)</div>";
+  frontCard.classList =
+    "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
+  frontCard.classList.add("angularColor");
+  stackPicked = true;
+});
+
 function loadQuestions(url) {
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
@@ -243,6 +284,7 @@ function displayFirst() {
   enableArrows();
   stackStarted = true;
   loadQuestions(url_pt1 + apikey + stackSelected + url_pt2);
+  console.log(url_pt1 + apikey + stackSelected + url_pt2);
   var delayInMilliseconds = 1000;
 
   setTimeout(function () {

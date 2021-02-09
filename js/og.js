@@ -27,6 +27,8 @@ let sheet2 = "/2";
 let sheet3 = "/3";
 let sheet4 = "/4";
 let sheet5 = "/5";
+let sheet6 = "/6";
+let sheet7 = "/7";
 let stackSelected = "";
 
 let csStack = document.getElementById("csStack");
@@ -34,6 +36,8 @@ let htmlStack = document.getElementById("htmlStack");
 let cssStack = document.getElementById("cssStack");
 let javascriptStack = document.getElementById("javascriptStack");
 let bootstrapStack = document.getElementById("bootstrapStack");
+let reactStack = document.getElementById("reactStack");
+let angularStack = document.getElementById("angularStack");
 let stacksMenu = document.getElementById("stacksMenu");
 let stackIcon = document.getElementById("stackIcon");
 
@@ -220,6 +224,26 @@ bootstrapStack.addEventListener("click", function () {
     "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
   frontCard.classList.add("bootstrapColor");
 });
+
+reactStack.addEventListener("click", function () {
+console.log('test');
+  // mainCard.innerHTML =
+  //   "<h1>bootstrap</h1><div class='centerAlign'>(click to start)</div>";
+  // stackSelected = sheet5;
+  // disableArrows();
+  // initialize();
+  // mainCard.classList =
+  //   "btn btn-dark justify-content-center m-2 p-2 p-md-4 p-lg-5 shadow";
+  // mainCard.classList.add("bootstrapColor");
+  // // TEST
+  // frontCard.innerHTML =
+  //   "<h1>bootstrap</h1><div class='centerAlign'>(click to start)</div>";
+  // frontCard.classList =
+  //   "card__face card__face--front btn btn-dark justify-content-center p-3 p-lg-5";
+  // frontCard.classList.add("bootstrapColor");
+});
+
+
 
 //change the number above to coincide with the sheet
 

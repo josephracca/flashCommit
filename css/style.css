@@ -215,6 +215,7 @@ def {
 
 .csColor {
     background-color: #00da6d;
+    color: rgb(21, 21, 21)!important;
 }
 
 .csColorL {
@@ -235,11 +236,20 @@ def {
 
 .jsColor {
     background-color: #FED630;
-    color: black;
+    color: rgb(21, 21, 21)!important;
 }
 
 .bootstrapColor {
     background-color: #673BB7;
+}
+
+.reactColor {
+    background-color: #1e5aa3;
+}
+
+.angularColor {
+    background-color: #9b2830;
+    color: white;
 }
 
 #mainCard {
